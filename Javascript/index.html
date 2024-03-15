@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .faq {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .question {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        overflow: hidden;
+      }
+
+      .question h2 {
+        margin: 0;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .question:hover h2 {
+        color: blue;
+      }
+
+      .answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+
+      .answer.active {
+        max-height: 200px; /* Set max height according to your content */
+      }
+      .expandable-content {
+        max-height: 150px;
+        overflow: hidden;
+        position: relative;
+        transition: max-height 0.3s ease-in-out; /* Thêm transition để tạo hiệu ứng mượt mà */
+      }
+
+      .controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding: 5px 0;
+      }
+
+      .controls button {
+        cursor: pointer;
+      }
+
+      .expanded .expandable-content {
+        max-height: none; /* Khi mở rộng, không giới hạn chiều cao */
+      }
+
+      .expanded .toggle-button::after {
+        content: 'Collapse';
+      }
+
+      @media screen and (max-width: 767px) {
+        .controls {
+          position: relative;
+          width: auto;
+          bottom: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="bt1">
+      <h1 id="title-bt1">1. select(), select.all(), addEventListener().</h1>
+      <ul class="list-bt1">
+        <li class="tag item-1"><a href="#">Item 1</a></li>
+        <li class="tag item-2"><a href="#">Item 2</a></li>
+        <li class="tag item-3"><a href="#">Item 3</a></li>
+        <li class="tag item-4"><a href="#">Item 4</a></li>
+        <li class="tag item-5"><a href="#">Item 5</a></li>
+      </ul>
+
+      <p class="value">Value</p>
+    </section>
+    <section>
+      <h1 id="title-bt2">
+        2. Xây dựng kịch bản cho 1 popup mở ra bằng cách bấm vào 1 button, và
+        close lại khi bấm vào 1 button khác trong popup..
+      </h1>
+      <button id="btn-open-popup">Open Popup</button>
+      <div
+        style="
+          padding: 10px;
+          border: 1px solid #ccc;
+          text-align: center;
+          margin-top: 5px;
+          display: none;
+        "
+        class="popup"
+        id="popup"
+      >
+        <div class="popup-content">
+          <h2>Popup</h2>
+          <p>Content</p>
+          <button id="btn-close-popup">Close Popup</button>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h1 id="title-bt4">
+        4, 7. Xây dựng kịch bản cho 1 block FAQ (có thu gọn/mở rộng cho từng
+        item), có animation chiều cao khi ẩn hiện không bị giật. Không dùng
+        display: none;
+      </h1>
+      <div class="faq">
+        <div class="question">
+          <h2>Question 1?</h2>
+          <div class="answer">
+            <p>
+              Answer 1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Accusantium, tempora!
+            </p>
+          </div>
+          <button>Open || Close</button>
+        </div>
+        <div class="question">
+          <h2>Question 2?</h2>
+          <div class="answer">
+            <p>
+              Answer 2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Accusantium, tempora!
+            </p>
+          </div>
+          <button>Open || Close</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h1 id="title-bt6">
+        6. Sử dụng cấu trúc functional programming (input - output). Mỗi
+        function chỉ xử lý 1 việc cụ thể. Viết sample function để open/close 1
+        popup từ mục số 2.
+      </h1>
+
+      <button id="btn-open-popup-fp">Open Title</button>
+      <button id="btn-close-popup-fp">Close Title</button>
+    </section>
+    <section>
+      <h1 id="title-bt8">
+        8, 9, 10. Xây dựng kịch bản cho 1 block chứa content dài, nhưng được set
+        giới hạn max chiều cao = 150px. Vượt quá chiều cao này, có nút 'Read
+        more' để bấm vào xem thêm. Có nút 'Collapse' để thu gọn lại về 150px.
+      </h1>
+      <div class="expandable-content">
+        <div class="content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque cum
+            culpa eius esse voluptas ratione nihil, unde sapiente cupiditate
+            voluptatum est, voluptatibus iure eos porro excepturi sed id,
+            perferendis eveniet! Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Neque cum culpa eius esse voluptas ratione nihil,
+            unde sapiente cupiditate voluptatum est, voluptatibus iure eos porro
+            excepturi sed id, perferendis eveniet! Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Neque cum culpa eius esse voluptas
+            ratione nihil, unde sapiente cupiditate voluptatum est, voluptatibus
+            iure eos porro excepturi sed id, perferendis eveniet! Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Neque cum culpa eius
+            esse voluptas ratione nihil, unde sapiente cupiditate voluptatum
+            est, voluptatibus iure eos porro excepturi sed id, perferendis
+            eveniet! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Neque cum culpa eius esse voluptas ratione nihil, unde sapiente
+            cupiditate voluptatum est, voluptatibus iure eos porro excepturi sed
+            id, perferendis eveniet! Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Neque cum culpa eius esse voluptas ratione nihil,
+            unde sapiente cupiditate voluptatum est, voluptatibus iure eos porro
+            excepturi sed id, perferendis eveniet! Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Neque cum culpa eius esse voluptas
+            ratione nihil, unde sapiente cupiditate voluptatum est, voluptatibus
+            iure eos porro excepturi sed id, perferendis eveniet! Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Neque cum culpa eius
+            esse voluptas ratione nihil, unde sapiente cupiditate voluptatum
+            est, voluptatibus iure eos porro excepturi sed id, perferendis
+            eveniet! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Neque cum culpa eius esse voluptas ratione nihil, unde sapiente
+            cupiditate voluptatum est, voluptatibus iure eos porro excepturi sed
+            id, perferendis eveniet! Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Neque cum culpa eius esse voluptas ratione nihil,
+            unde sapiente cupiditate voluptatum est, voluptatibus iure eos porro
+            excepturi sed id, perferendis eveniet! Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Neque cum culpa eius esse voluptas
+            ratione nihil, unde sapiente cupiditate voluptatum est, voluptatibus
+            iure eos porro excepturi sed id, perferendis eveniet! Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Neque cum culpa eius
+            esse voluptas ratione nihil, unde sapiente cupiditate voluptatum
+            est, voluptatibus iure eos porro excepturi sed id, perferendis
+            eveniet!
+          </p>
+        </div>
+        <div class="controls">
+          <button class="toggle-button">Read more</button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const bai1 = () => {
+        const arr = [];
+        // chọn phần từ item đầu tiên trong bằng selector
+        arr.push(document.querySelector('.list-bt1 li:first-child'));
+        // chọn phần từ item1 theo class
+        arr.push(document.querySelector('.list-bt1  .item-1'));
+        // chọn toàn bộ phần tử có class là tag
+        arr.push(document.getElementsByClassName('tag'));
+        // chọn phần tử có class title-bt1
+        arr.push(document.getElementById('title-bt1'));
+        // chọn theo tên thể
+        arr.push(document.getElementsByTagName('li'));
+        // lấy toàn bộ phần tử là thẻ li nằm trong class .list-bt1
+        arr.push(document.querySelectorAll('.list-bt1 li')); // trả về nodelist
+
+        const getAll = document.querySelectorAll('.list-bt1 li');
+
+        getAll.forEach((item) => {
+          item.addEventListener('click', (event) => {
+            alert(`Bạn vừa click vào ${event.target.textContent}`);
+          });
+        });
+
+        console.log(arr);
+        document.querySelector('.value').innerText = arr;
+      };
+
+      const bai2 = () => {
+        const openModal = document.getElementById('btn-open-popup');
+        const closeModal = document.getElementById('btn-close-popup');
+        const popup = document.getElementById('popup');
+        openModal.addEventListener('click', () => {
+          popup.style.display = 'block';
+        });
+        closeModal.onclick = () => {
+          popup.style.display = 'none';
+        };
+      };
+
+      const bai4 = () => {
+        const openFQA = (event) => {
+          const parent = event.target.parentElement;
+          const answer = parent.querySelector('.answer');
+          answer.classList.add('active');
+        };
+
+        const closeFQA = (event) => {
+          const parent = event.target.parentElement;
+          const answer = parent.querySelector('.answer');
+          answer.classList.remove('active');
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+          const nodeListFQA = document.querySelectorAll('.question button');
+          nodeListFQA.forEach((item) => {
+            item.addEventListener('click', (event) => {
+              const parent = event.target.parentElement;
+              const answer = parent.querySelector('.answer');
+              if (answer.classList.contains('active')) {
+                closeFQA(event);
+              } else {
+                openFQA(event);
+              }
+            });
+          });
+        });
+      };
+
+      const bai6 = () => {
+        const getTitle = document.getElementById('title-bt6');
+        const openModal = document.getElementById('btn-open-popup-fp');
+        const closeModal = document.getElementById('btn-close-popup-fp');
+
+        const open = () => {
+          getTitle.style.display = 'block';
+        };
+        const close = () => {
+          getTitle.style.display = 'none';
+        };
+
+        [openModal, closeModal].forEach((item) => {
+          item.addEventListener('click', () => {
+            if (item === openModal) {
+              open();
+            } else {
+              close();
+            }
+          });
+        });
+      };
+
+      const bai8 = () => {
+        document.addEventListener('DOMContentLoaded', function () {
+          const expandableContent = document.querySelector(
+            '.expandable-content'
+          );
+          const toggleButton = document.querySelector('.toggle-button');
+
+          toggleButton.addEventListener('click', function () {
+            expandableContent.classList.toggle('expanded');
+            if (expandableContent.classList.contains('expanded')) {
+              expandableContent.style.maxHeight = 'none';
+            } else {
+              expandableContent.style.maxHeight = '150px';
+            }
+          });
+        });
+      };
+
+      const leardJsCore = {
+        bai1,
+        bai2,
+        bai4,
+        bai6,
+        bai8,
+      };
+
+      leardJsCore.bai1();
+      leardJsCore.bai2();
+      leardJsCore.bai4();
+      leardJsCore.bai6();
+      leardJsCore.bai8();
+    </script>
+  </body>
+</html>
